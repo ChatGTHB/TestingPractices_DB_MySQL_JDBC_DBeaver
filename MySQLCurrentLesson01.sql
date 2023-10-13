@@ -17,7 +17,7 @@ select Name,population from city; -- City'den name ve populationu getir.
 select count(id) from city; -- Kaç tane id var
 select count(name) from city; -- Kaç tane name var
 select count(*) from city; -- Kaç tane satır var
-select count(*) as ŞehirSayisi from city; -- as ilgili veriye uygun başlık vermek için kullanılabilir
+select count(*) as SehirSayisi from city; -- as ilgili veriye uygun başlık vermek için kullanılabilir
 select Code as Kod, Name as Ad from country; -- SQL : db sorgulama dili
 select distinct(name) from city; -- Benzersiz ismi olan şehirler
 select count(distinct(name)) from city; -- Benzersiz ismi olan şehirlerin sayısı
