@@ -22,7 +22,7 @@ select Code as Kod, Name as Ad from country; -- SQL : db sorgulama dili
 select distinct(name) from city; -- Benzersiz ismi olan şehirler
 select count(distinct(name)) from city; -- Benzersiz ismi olan şehirlerin sayısı
 
-select 12-5; -- selecti hesap makinesi gibi kullanabiliriz
+select 12-5; -- Selecti hesap makinesi gibi kullanabiliriz
 select 45/6*4;
 
 use sakila; -- Film kiralama programı database
