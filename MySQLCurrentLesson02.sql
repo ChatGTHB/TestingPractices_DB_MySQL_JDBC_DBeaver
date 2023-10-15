@@ -59,3 +59,8 @@ select * from customer limit 10;    -- İlk 10 kaydı gösterir
 select * from customer limit 10,10; -- 10. kayıttan sonraki 10 kayıt --> 1.si kaçıncıdan sonra başlayacak (10), 2.si kaç kayıt getirecek
 select * from customer limit 20,10; -- 21. kayıttan itibaren 10 kayıt
 select * from customer limit 30,10; -- 31. kayıt dahil sonraki 10 kayıt
+
+-- Sıralama
+select * from customer;
+select * from customer order by last_name; -- last_name ile sırala --> default asc
+-- asc : küçükten büyüğe, desc : büyükten küçüğe 
