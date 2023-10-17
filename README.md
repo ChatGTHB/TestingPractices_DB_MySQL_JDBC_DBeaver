@@ -1,1 +1,3 @@
-# MySQL Exercises
+# SQL Exercises
+## MySQL
+## DBeaver
