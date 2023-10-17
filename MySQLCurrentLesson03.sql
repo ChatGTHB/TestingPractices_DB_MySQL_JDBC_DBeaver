@@ -1,66 +1,72 @@
-use sakila; -- Film kiralama programı database
-select * from actor; -- Aktör tablosu
-select count(*) as AktorSayisi from actor;
-select * from film;
-select * from payment;
-
-select max(amount) as EnPahaliKiralama from payment;       -- En pahalı kiralama ücreti
-select min(amount) as EnUcuzKiralama from payment;         -- En ucuz kiralama ücreti
-select sum(amount) as ToplamGelir from payment;            -- Toplam gelir
-select avg(amount) as OrtalamaKiralamaUcreti from payment; -- Ortalama kiralama ücreti
-
--- WHERE kelimesi ile kriter veriyoruz
-select * from payment where customer_id=3; -- Payment tablosundan customer_id'si 3 olan müşterinin bilgileri
-
--- Soru :  3 nolu müşterinin yaptığı toplam ödemeyi bulunuz.
-select sum(amount) as ToplamOdeme from payment where customer_id=3;
-
--- Soru :  3 nolu müşterinin yapmış olduğu minimum ve maksimum ödemeleri bulunuz.
-select min(amount) as EnDusukOdeme, max(amount) as EnYuksekOdeme from payment where customer_id=3;
-
--- Soru :  3 nolu müşterinin kaç kiralama yaptığını bulunuz.
-select count(*) as KiralamaSayisi from payment where customer_id=3;
-
--- Birden fazla where kriteri
-select * from payment where customer_id=3 or customer_id=6; -- 3 ve 6 customer_id'li müşteriler
-
-select * from payment where customer_id=3 and staff_id=2;   -- 3 customer_id'li müşterinin 2 staff_id'li çalışandan yaptığı kiralamalar
-
-select * from payment where customer_id in (2,3,4,5,6);          -- Çok kriter vermenin diğer bir yolu. Or gibi çalışır.
-select * from payment where customer_id between 2 and 6;         -- Çok kriter vermenin diğer bir yolu. 2 ila 6 arası
-select * from payment where customer_id >=2 and customer_id <=6; -- 2 ila 6 arası müşteriler
-
+-- Sıralama / Order By
 select * from customer;
-select * from customer where last_name='SCOTT';
-select * from customer where last_name='SCOTT' or last_name='DAVIS'	or last_name='MILLER';
-select * from customer where last_name in ('SCOTT','DAVIS','MILLER');
+select * from customer order by last_name;      -- default olarak asc (artan)
+select * from customer order by last_name asc;  -- artan yönde sıralama
+select * from customer order by last_name desc; -- azalan yönde sıralama
 
--- Soru: Payment tablosundan 5 ve 7 dolar arası ödeme yapan müşteri numaralarını bulunuz.
-select customer_id from payment where amount between 5 and 7;
-select customer_id from payment where amount<=7 and amount>=5;
+select * from customer order by store_id; -- store_id artan yönde sıralı
+select * from customer order by store_id asc, last_name asc; -- store_id artan sıralı olsun; her store_id de kendi içinde artan yönde soyad sıralı olsun
 
--- Soru: 5 nolu müşteri haricindeki müşterileri customer tablosundan sıralatınız.
-select * from customer where customer_id <> 5;
+-- Soru : Müşteri tablosundaki id'ye göre son 10 ismi bulunuz
+select * from customer order by customer_id desc limit 10;
 
--- Soru: 2005-07-08 tarihinde 5 ila 7 dolar arası ödeyen müşteri bilgilerini yazdırınız.
-select * from payment where (amount between 5 and 7) and (payment_date between '2005-07-08 00:00:00' and '2005-07-08 23:59:59');
+-- Soru : Müşteri tablosundaki 500 ila 600 id'ler arasındaki müşterileri mağaza bazlı, soyisim sıralı listeleyiniz.
+ select * from customer where customer_id between 500 and 600 order by store_id, last_name;
+ 
+-- Soru : 2005-12-01 tarihinden önceki ödemelerin listesini müşteri sıralı veriniz.
+ select * from payment where payment_date < '2005-12-01' order by payment_date, customer_id;
+-- Order by'dan 2 alan gelirse önce 1. alan göre sıralar eğer aynı bilgiler gelirse onları da kendi içinde 2. alana göre sıralar
+ 
+-- Soru : 2006 yılına ait toplam ödemeyi (amount) bulunuz.
+ select sum(amount) from payment where payment_date between '2006-01-01' and '2006-12-31 23:59:59';
+ select sum(amount) from payment where payment_date like'2006%';
+ 
+-- Soru : 2005-2006 yılları toplam ödeme farkını bulunuz.
+ select 
+ (select sum(amount) from payment where payment_date like'2005%') 
+ - 
+ (select sum(amount) from payment where payment_date like'2006%')
+ as _2005_2006_TahsilatFarki;
+  
+select * from address;
+  -- district (ilçe-semt)  distinct (tekrarsız kayıtlar) 
+select distinct(district) from address; -- Hangi bölgelerden müşteri geliyor
+select * from address order by district; 
+  
+-- Gruplama
+select district,count(*) as MusteriSayisi from address group by district;
+select district,count(*) as MusteriSayisi from address group by district order by MusteriSayisi desc;
 
--- String arama işlemleri :
-select * from customer where last_name='SCOTT'; 
-select * from customer where last_name like 'S%';      -- S... startWiths(S) 'S' ile başlayanlar
-select * from customer where last_name like '%S';      -- ...S endWiths(S) 'S' ile bitenler
-select * from customer where last_name like '%S%';     -- ...S... contains(S) 'S' içerenler
-select * from customer where last_name like '%S%C';    -- ...S...C... içinde önce 'S' geçip sonra 'C' geçenler
-select * from customer where last_name like '%SC%';    -- ...SC... contains(SC) 'SC' içerenler
-select * from customer where last_name like '%SC%IN%'; -- ...SC...IN... içinde önce 'SC' geçip sonra 'IN' geçenler
+-- Soru :  Her ülkenin kaç şehri olduğunu bulunuz ve il sayısı yüksek olan az olana göre sıralayınız.
+select country_id as UlkeId, count(*) as SehirSayisi from city group by country_id order by SehirSayisi desc;
 
--- Limit
-select * from customer limit 10;    -- İlk 10 kaydı gösterir
-select * from customer limit 10,10; -- 10. kayıttan sonraki 10 kayıt --> 1.si kaçıncıdan sonra başlayacak (10), 2.si kaç kayıt getirecek
-select * from customer limit 20,10; -- 21. kayıttan itibaren 10 kayıt
-select * from customer limit 30,10; -- 31. kayıt dahil sonraki 10 kayıt
+-- Soru : City tablosundan her ülkenin 'A' harfi ile başlayan kaç şehri olduğunuz bulunuz.
+select country_id as UlkeId, count(*) as SehirSayisi from city where city like 'A%' group by country_id order by SehirSayisi desc;
 
--- Sıralama
-select * from customer;
-select * from customer order by last_name; -- last_name ile sırala --> default asc
--- asc : küçükten büyüğe, desc : büyükten küçüğe 
+-- Having
+-- City tablosundan her ülkenin 'A' harfi ile başlayan kaç şehri olduğunuz bulunuz ve sorgu sonucundaki listeden sadece 3'den fazla şehri olan ülkeleri yazdırınız.
+select country_id as UlkeId, count(*) as SehirSayisi from city where city like 'A%' group by country_id having SehirSayisi >=3 order by SehirSayisi desc;
+
+-- String Fonksiyonları
+select * from  customer;
+
+select first_name, last_name, email from customer;
+select concat(first_name, ' ',last_name) as AdSoyad from customer;
+select concat('Ad Soyad = ',first_name, ' ',last_name) as Ad_Soyad from customer;
+
+select first_name as Ad, last_name as Soyad, length(first_name) as Ad_Uzunluk, length(last_name) as Soyad_Uzunluk from customer;
+
+select first_name as Ad, last_name as Soyad, left(first_name,3) as Soldan_Uc_Karakter, right(last_name,3) as Sagdan_Uc_Karakter from customer;
+
+-- Soru : Ad ve Soyadları --A. Soyad-- şeklinde kısaltarak yazdırınız.
+select first_name as Ad, last_name as Soyad, concat(left(first_name,1),'. ',last_name) as KısaAd from customer;
+
+-- Soru : Ad ve Soyadları --A. S.-- şeklinde kısaltarak yazdırınız.
+select first_name as Ad, last_name as Soyad, concat(left(first_name,1),'. ',left(last_name,1),'.') as KısaAd from customer;
+
+-- Soru : Customer tablosunda first_name'in uzunluğuna göre kaçar kişi olduğunu bulunuz.
+-- Örneğin : 
+-- 5 karakterli isme sahip 7 müşteri var...
+select length(first_name) as Ad_Uzunlugu, count(*) as Musteri_Sayisi from customer group by Ad_Uzunlugu order by Ad_Uzunlugu;
+select concat(length(first_name), ' karakterli isme sahip ', count(*), ' müşteri var.') as Rapor from customer group by length(first_name) order by length(first_name);
+ 
