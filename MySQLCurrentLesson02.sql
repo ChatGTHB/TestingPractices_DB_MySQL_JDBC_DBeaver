@@ -9,7 +9,7 @@ select min(amount) as EnUcuzKiralama from payment;         -- En ucuz kiralama �
 select sum(amount) as ToplamGelir from payment;            -- Toplam gelir
 select avg(amount) as OrtalamaKiralamaUcreti from payment; -- Ortalama kiralama ücreti
 
--- WHERE kelimesi ile kriter veriyoruz
+-- Where kelimesi ile kriter veriyoruz
 select * from payment where customer_id=3; -- Payment tablosundan customer_id'si 3 olan müşterinin bilgileri
 
 -- Soru :  3 nolu müşterinin yaptığı toplam ödemeyi bulunuz.
