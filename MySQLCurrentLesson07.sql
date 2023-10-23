@@ -32,3 +32,43 @@ select first_name, last_name, substr(phone,1,10), email
 from sakila.customer
 left join sakila.address ON sakila.address.address_id=sakila.customer.address_id limit 50;
 select * from rehber7;
+
+create table rehber8(
+id int auto_increment primary key, 
+ad varchar(50)     not null,        -- Buraya bir değer gelmesi zorunlu
+soyad varchar(50)  not null,        -- Buraya bir değer gelmesi zorunlu
+tel varchar(50)    default '',      -- Buraya değer gelmesi zorunlu değil; verilmezse default değer '' olacak.
+email varchar(100) default ''       -- Buraya değer gelmesi zorunlu değil; verilmezse default değer '' olacak.
+);
+
+insert into rehber8 (ad,soyad,tel,email)
+select first_name, last_name, substr(phone,1,10), email 
+from sakila.customer
+left join sakila.address ON sakila.address.address_id=sakila.customer.address_id limit 50;
+select * from rehber8;
+
+-- ATTENTION : DELETE ve UPDATE komutları WHERE olmadan kullanılmamalı!!!
+-- Veri Silme İşlemleri
+select * from rehber8 where id=7; -- Önce selectle aradığını bulup kontrolünü yap
+delete from rehber8 where id=7;   -- Sonra sil
+select * from rehber8;
+
+-- Veri Güncelleme İşlemleri
+select * from rehber8 where id=50;                            -- Önce selectle aradığını bulup kontrolünü yap
+update rehber8 set ad='JACK', soyad='NICHOLSON' where id=50;  -- Sonra sil
+
+-- Drop
+drop database z_garip; -- Database siler
+drop table rehber8;    -- Tablo siler
+
+-- Alter : Yapıda değişiklik yapar
+alter table rehber8 ADD yas int not null;        -- Yeni özellik ekler
+alter table rehber8 CHANGE tel tel varchar(60);  -- Var olanı değiştirir
+alter table rehber8 DROP yas;                    -- Var olan kolonu siler
+
+-- 1den fazla primary keye ihtiyaç varsa tanımlama aşağıdaki şekilde yapılır : 
+create table aktor_film(
+aktor_id int,
+film_id int,
+primary key (aktor_id, film_id)
+)
