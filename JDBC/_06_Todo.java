@@ -1,6 +1,5 @@
-package jdbc;
+package JDBC;
 
-import jdbc.JDBCParent;
 import org.testng.annotations.Test;
 
 import java.sql.ResultSet;
