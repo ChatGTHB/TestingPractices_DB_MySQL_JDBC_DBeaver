@@ -58,6 +58,14 @@ select * from customer where last_name like '%S%C';    -- ...S...C... içinde ö
 select * from customer where last_name like '%SC%';    -- ...SC... contains(SC) 'SC' içerenler
 select * from customer where last_name like '%SC%IN%'; -- ...SC...IN... içinde önce 'SC' geçip sonra 'IN' geçenler
 
+select first_name , last_name from customer;
+select first_name , length(first_name) as fu, last_name, length(last_name) as lu from customer;
+
+select first_name , left(first_name,3) as SoldanUcKarakter, last_name, right(last_name,3) as SagdanUcKarakter from customer;
+
+select concat(first_name,' ',last_name) as fullName from customer;
+select concat('FullName=',first_name,' ',last_name) as fullName from customer;
+
 -- Limit
 select * from customer limit 10;    -- İlk 10 kaydı gösterir
 select * from customer limit 10,10; -- 10. kayıttan sonraki 10 kayıt --> 1.si kaçıncıdan sonra başlayacak (10), 2.si kaç kayıt getirecek
