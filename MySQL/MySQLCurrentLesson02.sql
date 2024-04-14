@@ -26,6 +26,10 @@ select * from payment where customer_id=3 or customer_id=6; -- 3 ve 6 customer_i
 
 select * from payment where customer_id=3 and staff_id=2;   -- 3 customer_id'li müşterinin 2 staff_id'li çalışandan yaptığı kiralamalar
 
+-- Soru 3 ve 2 nolu müşterilerin yaptığı kiralamaları listesini alınız
+select * from payment where customer_id=3 or customer_id=2;
+select count(*) from payment where customer_id=3 or customer_id=2;
+
 select * from payment where customer_id in (2,3,4,5,6);          -- Çok kriter vermenin diğer bir yolu. Or gibi çalışır.
 select * from payment where customer_id between 2 and 6;         -- Çok kriter vermenin diğer bir yolu. 2 ila 6 arası
 select * from payment where customer_id >=2 and customer_id <=6; -- 2 ila 6 arası müşteriler
