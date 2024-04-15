@@ -1,5 +1,15 @@
 use sakila; -- Film kiralama programı database
+
 select * from actor; -- Aktör tablosu
+select * from customer; -- Müşteri tablosu
+select * from address; -- Müşteri adres tablosu
+select * from city ; -- Müşteri adres şehirleri
+select * from country; -- Müşteri adres ülkeleri
+select * from film; -- Mağaza film listesi
+select * from film_actor; -- Hangi aktör hangi filmde oynamış
+select * from payment; -- Müşteri ödemeleri
+select * from actor; -- Aktör tablosu
+
 select count(*) as AktorSayisi from actor;
 select * from film;
 select * from payment;
