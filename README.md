@@ -1,4 +1,4 @@
-# SQL Exercises
+# Database Testing Exercises
 
 ## MySQL
 #### Sakila 
