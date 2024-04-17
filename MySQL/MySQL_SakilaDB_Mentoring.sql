@@ -5,7 +5,7 @@
 -- Practice 01
 -- "sakila" database'ini kullanınız.
 
-use sakila;
+USE sakila;
 
 -- ------------------------------------------------------------------------
 -- Practice 02
