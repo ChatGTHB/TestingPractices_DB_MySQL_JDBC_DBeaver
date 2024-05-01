@@ -1,5 +1,3 @@
-package jdbc;
-
 import org.testng.annotations.Test;
 
 import java.sql.*;

@@ -1,4 +1,4 @@
-package jdbc;
+package JDBC;
 
 import org.testng.annotations.Test;
 
