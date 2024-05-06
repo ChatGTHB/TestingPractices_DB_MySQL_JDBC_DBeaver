@@ -1,4 +1,4 @@
-# Database Testing Exercises
+# Database Testing Practices
 
 ## MySQL
 #### Sakila 
