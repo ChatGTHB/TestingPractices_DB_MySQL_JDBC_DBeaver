@@ -1,5 +1,10 @@
 # Database Testing Practices
 
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![DBeaver](https://img.shields.io/badge/DBeaver-072A43?style=for-the-badge&logo=dbeaver&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![JDBC](https://img.shields.io/badge/JDBC-3776AB?style=for-the-badge&logo=java&logoColor=white)
+
 ## 💡 Introduction
 Welcome to the **Database Testing Practices** repository! This project is designed to help you practice and enhance your skills in database testing using MySQL, JDBC, and DBeaver. The repository contains various SQL scripts and JDBC examples that cover different database concepts, from basic operations to more advanced topics.
 
