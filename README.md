@@ -1,4 +1,4 @@
-# Database Testing Practices
+# TestingPractices_DB_MySQL_JDBC_DBeaver
 
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![DBeaver](https://img.shields.io/badge/DBeaver-072A43?style=for-the-badge&logo=dbeaver&logoColor=white)
