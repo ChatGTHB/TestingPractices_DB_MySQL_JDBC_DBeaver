@@ -64,7 +64,7 @@ CREATE DATABASE customer_database;
 
 -- Veritabanı oluşturmak için "CREATE DATABASE" ifadesini kullanırız.
 -- Bu ifade, yeni bir veritabanı oluşturmak için kullanılan bir DDL (Data Definition Language) ifadesidir.
--- Bu sorgu, "sample_database" adında bir veritabanı oluşturacaktır.
+-- Bu sorgu, "customer_database" adında bir veritabanı oluşturacaktır.
 
 -- Adım 2: Veritabanını Seçme
 
