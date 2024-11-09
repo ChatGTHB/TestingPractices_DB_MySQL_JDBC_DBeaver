@@ -74,7 +74,7 @@ WHERE
 
 -- ------------------------------------------------------------------------
 -- Practice 08
--- Soyadları ALLEN ve adları SUSAN olan tüm aktörleri döndürünüz:
+-- Soyadları DAVIS ve adları SUSAN olan tüm aktörleri döndürünüz:
 
 SELECT 
     *
@@ -86,7 +86,7 @@ WHERE
 
 -- ------------------------------------------------------------------------
 -- Practice 09
--- Soyadları ALLEN veya SUSAN olan tüm aktörleri döndürünüz.
+-- Soyadları ALLEN veya DAVIS olan tüm aktörleri döndürünüz.
 
 -- 1. Yöntem
 SELECT 
